@@ -1,5 +1,8 @@
-import streamlit as st import pandas as pd import plotly.express as px from datetime import date, datetime from pathlib import Path
-
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+from datetime import date, datetime
+from pathlib import Path
 st.set_page_config(page_title="My AI Journey Dashboard", layout="wide")
 
 def load_or_create_csv(path: str, default_df: pd.DataFrame) -> pd.DataFrame: p = Path(path) p.parent.mkdir(parents=True, exist_ok=True) if p.exists(): try: return pd.read_csv(p) except Exception: pass default_df.to_csv(p, index=False) return default_df.copy()
